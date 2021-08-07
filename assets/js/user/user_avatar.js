@@ -16,14 +16,17 @@ $(function() {
 
     $('#commitFile').on('click', function() {
         $('#inputFile').click()
-        console.log('clicking....')
+      
     })
 
     $('#inputFile').on('change', function(e) {
         // 拿到用户选择的文件
-        var file = e.target.files[0]
+        var file = e.target.files
+	 if (file.length === 0) {
+      return layer.msg('请选择照片！')
+    }
             // 根据选择的文件，创建一个对应的 URL 地址：
-        var newImgURL = URL.createObjectURL(file)
+        var newImgURL = URL.createObjectURL(file[0])
             // 先`销毁`旧的裁剪区域，再`重新设置图片路径`，之后再`创建新的裁剪区域`：
         $image
             .cropper('destroy') // 销毁旧的裁剪区域
@@ -32,7 +35,7 @@ $(function() {
     })
 
     $('#btnPostFile').on('click', function() {
-        console.log('click')
+      
         var dataURL = $image
             .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
                 width: 100,

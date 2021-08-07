@@ -1,6 +1,9 @@
 $(function() {
     var form = layui.form
     var layer = layui.layer
+
+    
+
     form.verify({
         nickname: function(val) {
             if (val.length < 2 || val.length > 12) {
@@ -9,7 +12,7 @@ $(function() {
         }
     })
 
-    initUserInfo()
+	initUserInfo()
 
     // 初始化用户信息
     function initUserInfo() {
@@ -43,11 +46,10 @@ $(function() {
                 if (res.status !== 0) {
                     return layer.msg('更新用户信息失败')
                 }
+		
                 window.parent.getUserInfo()
-                layer.msg('更新用户信息成功')
+		layer.msg('更新用户信息成功')
             }
         })
     })
-
-
 })

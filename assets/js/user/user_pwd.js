@@ -7,12 +7,12 @@ $(function() {
             /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
         ],
         samePwd: function(val) {
-            if (val === $('[name=oldpwd]').val()) {
+            if (val === $('[name=oldPwd]').val()) {
                 return "新密码与旧密码不可以一致"
             }
         },
         rePwd: function(val) {
-            if (val !== $('[name=newpwd]').val()) {
+            if (val !== $('[name=newPwd]').val()) {
                 return "两次密码不一致"
             }
         }
@@ -26,12 +26,11 @@ $(function() {
             data: $(this).serialize(),
             success: function(res) {
                 if (res.status !== 0) {
-                    return layer.msg(res.message)
+                    return layer.msg('修改密码失败')
                 }
-                layer.msg(res.message)
+                layer.msg('修改密码成功')
                 $('.layui-form')[0].reset()
             }
         })
     })
-    console.log('subsubsub...')
 })
